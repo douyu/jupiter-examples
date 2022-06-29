@@ -17,10 +17,10 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/apache/rocketmq-client-go/v2/primitive"
 	"strconv"
 	"time"
 
+	"github.com/apache/rocketmq-client-go/v2/primitive"
 	"github.com/douyu/jupiter"
 	"github.com/douyu/jupiter/pkg/client/rocketmq"
 	"github.com/douyu/jupiter/pkg/xlog"
@@ -75,7 +75,7 @@ func (eng *Engine) exampleRocketMQProducer() (err error) {
 	ctx := context.Background()
 	for i := 0; i < 100; i++ {
 		msg := "a" + strconv.Itoa(i)
-		producerClient.SendWithContext(ctx, []byte(msg))
+		_ = producerClient.SendWithContext(ctx, []byte(msg))
 	}
 
 	return
