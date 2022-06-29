@@ -6,10 +6,10 @@ import (
 	"sync"
 
 	"github.com/bwmarrin/snowflake"
+	uuidv1 "github.com/douyu/jupiter-examples/uuid/gen/api/go/uuid/v1"
+	redisCli "github.com/douyu/jupiter-examples/uuid/internal/pkg/redis"
 	"github.com/google/uuid"
 	"github.com/google/wire"
-	"uuid/gen/api/go/uuid/v1"
-	redisCli "uuid/internal/pkg/redis"
 )
 
 var ProviderSet = wire.NewSet(
@@ -61,16 +61,16 @@ func NewUuidService(options Options) *Uuid {
 	return uuidServer
 }
 
-func (u *Uuid) GetUuidBySnowflake(ctx context.Context, req *uuidv1.GetUuidBySnowflakeRequest) (*uuidv1.GetUuidBySnowflakeRequestResponse, error) {
+func (u *Uuid) GetUuidBySnowflake(ctx context.Context, req *uuidv1.GetUuidBySnowflakeRequest) (*uuidv1.GetUuidBySnowflakeResponse, error) {
 	u.snowflakeRw.RLock()
 	// Generate a snowflake ID.
 	id := u.snowflakeMap.Generate()
 	u.snowflakeRw.RUnlock()
 
-	return &uuidv1.GetUuidBySnowflakeRequestResponse{
+	return &uuidv1.GetUuidBySnowflakeResponse{
 		Error: 0,
 		Msg:   "success",
-		Data: &uuidv1.GetUuidBySnowflakeRequestResponse_Data{
+		Data: &uuidv1.GetUuidBySnowflakeResponse_Data{
 			Uuid: id.String(),
 		},
 	}, nil

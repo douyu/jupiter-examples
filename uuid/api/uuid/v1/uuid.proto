@@ -8,9 +8,9 @@ option go_package = "uuid/v1;uuidv1";
 package uuid.v1;
 
 // The uuid service definition.
-service Uuid {
+service UuidService {
   // Get a uuid through the snowflake algorithm
-  rpc GetUuidBySnowflake (GetUuidBySnowflakeRequest) returns (GetUuidBySnowflakeRequestResponse) {}
+  rpc GetUuidBySnowflake (GetUuidBySnowflakeRequest) returns (GetUuidBySnowflakeResponse) {}
 
   // Get a uuid through the google uuid v4
   rpc GetUuidByGoogleUUIDV4 (GetUuidByGoogleUUIDV4Request) returns (GetUuidByGoogleUUIDV4Response) {}
@@ -20,7 +20,7 @@ service Uuid {
 message GetUuidBySnowflakeRequest {}
 
 // The response message containing the UUID.
-message GetUuidBySnowflakeRequestResponse {
+message GetUuidBySnowflakeResponse {
   // Data ...
   message Data {
     // message ...

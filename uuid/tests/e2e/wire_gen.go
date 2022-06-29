@@ -7,8 +7,8 @@
 package e2e
 
 import (
-	"uuid/internal/app/uuidserver/service"
-	"uuid/internal/pkg/redis"
+	"github.com/douyu/jupiter-examples/uuid/internal/app/uuidserver/service"
+	"github.com/douyu/jupiter-examples/uuid/internal/pkg/redis"
 )
 
 // Injectors from wire.go:

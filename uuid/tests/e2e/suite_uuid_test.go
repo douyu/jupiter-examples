@@ -1,9 +1,9 @@
 package e2e
 
 import (
+	mocks "github.com/douyu/jupiter-examples/uuid/gen/mocks/redis"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	mocks "uuid/gen/mocks/redis"
 )
 
 var _ = Describe("uuidService", func() {

@@ -1,9 +1,9 @@
 package server
 
 import (
+	"github.com/douyu/jupiter-examples/uuid/internal/app/uuidserver/controller"
 	"github.com/douyu/jupiter/pkg/server/xecho"
 	echo "github.com/labstack/echo/v4"
-	"uuid/internal/app/uuidserver/controller"
 )
 
 type HttpServer struct {
