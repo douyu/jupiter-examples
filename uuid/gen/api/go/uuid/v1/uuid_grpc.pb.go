@@ -14,124 +14,124 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// UuidClient is the client API for Uuid service.
+// UuidServiceClient is the client API for UuidService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type UuidClient interface {
+type UuidServiceClient interface {
 	// Get a uuid through the snowflake algorithm
-	GetUuidBySnowflake(ctx context.Context, in *GetUuidBySnowflakeRequest, opts ...grpc.CallOption) (*GetUuidBySnowflakeRequestResponse, error)
+	GetUuidBySnowflake(ctx context.Context, in *GetUuidBySnowflakeRequest, opts ...grpc.CallOption) (*GetUuidBySnowflakeResponse, error)
 	// Get a uuid through the google uuid v4
 	GetUuidByGoogleUUIDV4(ctx context.Context, in *GetUuidByGoogleUUIDV4Request, opts ...grpc.CallOption) (*GetUuidByGoogleUUIDV4Response, error)
 }
 
-type uuidClient struct {
+type uuidServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewUuidClient(cc grpc.ClientConnInterface) UuidClient {
-	return &uuidClient{cc}
+func NewUuidServiceClient(cc grpc.ClientConnInterface) UuidServiceClient {
+	return &uuidServiceClient{cc}
 }
 
-func (c *uuidClient) GetUuidBySnowflake(ctx context.Context, in *GetUuidBySnowflakeRequest, opts ...grpc.CallOption) (*GetUuidBySnowflakeRequestResponse, error) {
-	out := new(GetUuidBySnowflakeRequestResponse)
-	err := c.cc.Invoke(ctx, "/uuid.v1.Uuid/GetUuidBySnowflake", in, out, opts...)
+func (c *uuidServiceClient) GetUuidBySnowflake(ctx context.Context, in *GetUuidBySnowflakeRequest, opts ...grpc.CallOption) (*GetUuidBySnowflakeResponse, error) {
+	out := new(GetUuidBySnowflakeResponse)
+	err := c.cc.Invoke(ctx, "/uuid.v1.UuidService/GetUuidBySnowflake", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *uuidClient) GetUuidByGoogleUUIDV4(ctx context.Context, in *GetUuidByGoogleUUIDV4Request, opts ...grpc.CallOption) (*GetUuidByGoogleUUIDV4Response, error) {
+func (c *uuidServiceClient) GetUuidByGoogleUUIDV4(ctx context.Context, in *GetUuidByGoogleUUIDV4Request, opts ...grpc.CallOption) (*GetUuidByGoogleUUIDV4Response, error) {
 	out := new(GetUuidByGoogleUUIDV4Response)
-	err := c.cc.Invoke(ctx, "/uuid.v1.Uuid/GetUuidByGoogleUUIDV4", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/uuid.v1.UuidService/GetUuidByGoogleUUIDV4", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// UuidServer is the server API for Uuid service.
-// All implementations should embed UnimplementedUuidServer
+// UuidServiceServer is the server API for UuidService service.
+// All implementations should embed UnimplementedUuidServiceServer
 // for forward compatibility
-type UuidServer interface {
+type UuidServiceServer interface {
 	// Get a uuid through the snowflake algorithm
-	GetUuidBySnowflake(context.Context, *GetUuidBySnowflakeRequest) (*GetUuidBySnowflakeRequestResponse, error)
+	GetUuidBySnowflake(context.Context, *GetUuidBySnowflakeRequest) (*GetUuidBySnowflakeResponse, error)
 	// Get a uuid through the google uuid v4
 	GetUuidByGoogleUUIDV4(context.Context, *GetUuidByGoogleUUIDV4Request) (*GetUuidByGoogleUUIDV4Response, error)
 }
 
-// UnimplementedUuidServer should be embedded to have forward compatible implementations.
-type UnimplementedUuidServer struct {
+// UnimplementedUuidServiceServer should be embedded to have forward compatible implementations.
+type UnimplementedUuidServiceServer struct {
 }
 
-func (UnimplementedUuidServer) GetUuidBySnowflake(context.Context, *GetUuidBySnowflakeRequest) (*GetUuidBySnowflakeRequestResponse, error) {
+func (UnimplementedUuidServiceServer) GetUuidBySnowflake(context.Context, *GetUuidBySnowflakeRequest) (*GetUuidBySnowflakeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUuidBySnowflake not implemented")
 }
-func (UnimplementedUuidServer) GetUuidByGoogleUUIDV4(context.Context, *GetUuidByGoogleUUIDV4Request) (*GetUuidByGoogleUUIDV4Response, error) {
+func (UnimplementedUuidServiceServer) GetUuidByGoogleUUIDV4(context.Context, *GetUuidByGoogleUUIDV4Request) (*GetUuidByGoogleUUIDV4Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUuidByGoogleUUIDV4 not implemented")
 }
 
-// UnsafeUuidServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to UuidServer will
+// UnsafeUuidServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to UuidServiceServer will
 // result in compilation errors.
-type UnsafeUuidServer interface {
-	mustEmbedUnimplementedUuidServer()
+type UnsafeUuidServiceServer interface {
+	mustEmbedUnimplementedUuidServiceServer()
 }
 
-func RegisterUuidServer(s grpc.ServiceRegistrar, srv UuidServer) {
-	s.RegisterService(&Uuid_ServiceDesc, srv)
+func RegisterUuidServiceServer(s grpc.ServiceRegistrar, srv UuidServiceServer) {
+	s.RegisterService(&UuidService_ServiceDesc, srv)
 }
 
-func _Uuid_GetUuidBySnowflake_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UuidService_GetUuidBySnowflake_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetUuidBySnowflakeRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UuidServer).GetUuidBySnowflake(ctx, in)
+		return srv.(UuidServiceServer).GetUuidBySnowflake(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/uuid.v1.Uuid/GetUuidBySnowflake",
+		FullMethod: "/uuid.v1.UuidService/GetUuidBySnowflake",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UuidServer).GetUuidBySnowflake(ctx, req.(*GetUuidBySnowflakeRequest))
+		return srv.(UuidServiceServer).GetUuidBySnowflake(ctx, req.(*GetUuidBySnowflakeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Uuid_GetUuidByGoogleUUIDV4_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UuidService_GetUuidByGoogleUUIDV4_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetUuidByGoogleUUIDV4Request)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UuidServer).GetUuidByGoogleUUIDV4(ctx, in)
+		return srv.(UuidServiceServer).GetUuidByGoogleUUIDV4(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/uuid.v1.Uuid/GetUuidByGoogleUUIDV4",
+		FullMethod: "/uuid.v1.UuidService/GetUuidByGoogleUUIDV4",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UuidServer).GetUuidByGoogleUUIDV4(ctx, req.(*GetUuidByGoogleUUIDV4Request))
+		return srv.(UuidServiceServer).GetUuidByGoogleUUIDV4(ctx, req.(*GetUuidByGoogleUUIDV4Request))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Uuid_ServiceDesc is the grpc.ServiceDesc for Uuid service.
+// UuidService_ServiceDesc is the grpc.ServiceDesc for UuidService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Uuid_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "uuid.v1.Uuid",
-	HandlerType: (*UuidServer)(nil),
+var UuidService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "uuid.v1.UuidService",
+	HandlerType: (*UuidServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetUuidBySnowflake",
-			Handler:    _Uuid_GetUuidBySnowflake_Handler,
+			Handler:    _UuidService_GetUuidBySnowflake_Handler,
 		},
 		{
 			MethodName: "GetUuidByGoogleUUIDV4",
-			Handler:    _Uuid_GetUuidByGoogleUUIDV4_Handler,
+			Handler:    _UuidService_GetUuidByGoogleUUIDV4_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

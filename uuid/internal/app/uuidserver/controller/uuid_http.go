@@ -3,12 +3,12 @@ package controller
 import (
 	"net/http"
 
+	uuidv1 "github.com/douyu/jupiter-examples/uuid/gen/api/go/uuid/v1"
+	"github.com/douyu/jupiter-examples/uuid/internal/app/uuidserver/service"
 	"github.com/douyu/jupiter/pkg/util/xerror"
 	"github.com/douyu/jupiter/pkg/xlog"
 	"github.com/labstack/echo/v4"
 	"go.uber.org/zap"
-	uuidv1 "uuid/gen/api/go/uuid/v1"
-	"uuid/internal/app/uuidserver/service"
 )
 
 type UuidHTTP struct {

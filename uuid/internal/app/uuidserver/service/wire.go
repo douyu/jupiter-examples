@@ -4,8 +4,8 @@
 package service
 
 import (
+	"github.com/douyu/jupiter-examples/uuid/internal/pkg/redis"
 	"github.com/google/wire"
-	"uuid/internal/pkg/redis"
 )
 
 func createMockUuidService() *Uuid {

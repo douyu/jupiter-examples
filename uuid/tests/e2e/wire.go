@@ -4,9 +4,9 @@
 package e2e
 
 import (
+	"github.com/douyu/jupiter-examples/uuid/internal/app/uuidserver/service"
+	"github.com/douyu/jupiter-examples/uuid/internal/pkg/redis"
 	"github.com/google/wire"
-	"uuid/internal/app/uuidserver/service"
-	"uuid/internal/pkg/redis"
 )
 
 func CreateUuidService(redisCli redis.RedisInterface) *service.Uuid {

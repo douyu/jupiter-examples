@@ -7,7 +7,7 @@
 package service
 
 import (
-	"uuid/internal/pkg/redis"
+	"github.com/douyu/jupiter-examples/uuid/internal/pkg/redis"
 )
 
 // Injectors from wire.go:
