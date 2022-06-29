@@ -1,4 +1,4 @@
-module uuid
+module github.com/douyu/jupiter-examples/
 
 go 1.16
 

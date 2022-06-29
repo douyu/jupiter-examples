@@ -16,6 +16,7 @@ package main
 
 import (
 	"github.com/douyu/jupiter"
+	"github.com/douyu/jupiter/pkg/governor"
 	"github.com/douyu/jupiter/pkg/server/xecho"
 	"github.com/douyu/jupiter/pkg/xlog"
 	"github.com/labstack/echo/v4"
@@ -34,8 +35,10 @@ type Engine struct {
 
 func NewEngine() *Engine {
 	eng := &Engine{}
+
 	if err := eng.Startup(
 		eng.serveHTTP,
+		eng.serverGoverner,
 	); err != nil {
 		xlog.Panic("startup", xlog.Any("err", err))
 	}
@@ -48,5 +51,11 @@ func (eng *Engine) serveHTTP() error {
 	server.GET("/hello", func(ctx echo.Context) error {
 		return ctx.JSON(200, "Gopher Wuhan")
 	})
+	return eng.Serve(server)
+}
+
+// Governer地址
+func (eng *Engine) serverGoverner() error {
+	server := governor.StdConfig("governor").Build()
 	return eng.Serve(server)
 }
