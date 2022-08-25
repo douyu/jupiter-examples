@@ -21,7 +21,7 @@ import (
 	"github.com/douyu/jupiter/pkg/xgrpclog"
 
 	"github.com/douyu/jupiter"
-	"github.com/douyu/jupiter/example/grpc/helloworld/helloworld"
+	"github.com/douyu/jupiter-examples/grpc/helloworld/helloworld"
 	"github.com/douyu/jupiter/pkg/client/grpc"
 	"github.com/douyu/jupiter/pkg/xlog"
 )
@@ -29,7 +29,7 @@ import (
 func main() {
 	eng := NewEngine()
 	if err := eng.Run(); err != nil {
-		xlog.Error(err.Error())
+		xlog.Default().Error(err.Error())
 	}
 }
 
@@ -42,13 +42,13 @@ func NewEngine() *Engine {
 	if err := eng.Startup(
 		eng.consumer,
 	); err != nil {
-		xlog.Panic("startup", xlog.Any("err", err))
+		xlog.Default().Panic("startup", xlog.Any("err", err))
 	}
 	return eng
 }
 
 func (eng *Engine) consumer() error {
-	xgrpclog.SetLogger(xlog.DefaultLogger)
+	xgrpclog.SetLogger(xlog.Default())
 
 	conn := grpc.StdConfig("directserver").Build()
 	client := helloworld.NewGreeterClient(conn)
@@ -59,9 +59,9 @@ func (eng *Engine) consumer() error {
 				Name: "jupiter",
 			})
 			if err != nil {
-				xlog.Error(err.Error())
+				xlog.Default().Error(err.Error())
 			} else {
-				xlog.Info("receive response", xlog.String("resp", resp.Message))
+				xlog.Default().Info("receive response", xlog.String("resp", resp.Message))
 			}
 			time.Sleep(1 * time.Second)
 		}

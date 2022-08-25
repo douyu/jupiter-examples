@@ -41,7 +41,7 @@ func NewEngine() *Engine {
 		eng.fileWatch,
 		eng.serveHTTP,
 	); err != nil {
-		xlog.Panic("startup", xlog.Any("err", err))
+		xlog.Default().Panic("startup", xlog.Any("err", err))
 	}
 
 	return eng
@@ -53,13 +53,12 @@ func (eng *Engine) serveHTTP() error {
 }
 
 func (s *Engine) fileWatch() error {
-	xlog.DefaultLogger = xlog.StdConfig("default").Build()
 	go func() {
 		// 循环打印配置
 		for {
 			time.Sleep(10 * time.Second)
 			peopleName := conf.GetString("people.name")
-			xlog.Info("people info", xlog.String("name", peopleName), xlog.String("type", "onelineByFileWatch"))
+			xlog.Default().Info("people info", xlog.String("name", peopleName), xlog.String("type", "onelineByFileWatch"))
 		}
 	}()
 	return nil

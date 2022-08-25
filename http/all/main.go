@@ -26,7 +26,7 @@ func main() {
 	// 多注册中心
 
 	if err := eng.Run(); err != nil {
-		xlog.Panic(err.Error())
+		xlog.Default().Panic(err.Error())
 	}
 }
 
@@ -40,7 +40,7 @@ func NewEngine() *Engine {
 		eng.serveHTTP,
 		eng.setLogger,
 	); err != nil {
-		xlog.Panic("startup", xlog.Any("err", err))
+		xlog.Default().Panic("startup", xlog.Any("err", err))
 	}
 	return eng
 }
@@ -56,6 +56,5 @@ func (eng *Engine) serveHTTP() error {
 
 // 治理地址
 func (eng *Engine) setLogger() error {
-	xlog.DefaultLogger = xlog.StdConfig("default").Build()
 	return nil
 }

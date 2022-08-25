@@ -35,20 +35,20 @@ func main() {
 			// 添加数据
 			_, err := client.Put(ctx, "/hello", "jupiter")
 			if err != nil {
-				xlog.Panic(err.Error())
+				xlog.Default().Panic(err.Error())
 			}
 
 			// 获取数据
 			response, err := client.Get(ctx, "/hello", clientv3.WithPrefix())
 			if err != nil {
-				xlog.Panic(err.Error())
+				xlog.Default().Panic(err.Error())
 			}
 
-			xlog.Info("get etcd info", xlog.String("key", string(response.Kvs[0].Key)), xlog.String("value", string(response.Kvs[0].Value)))
+			xlog.Default().Info("get etcd info", xlog.String("key", string(response.Kvs[0].Key)), xlog.String("value", string(response.Kvs[0].Value)))
 			return nil
 		},
 	)
 	if err != nil {
-		xlog.Panic("startup", xlog.Any("err", err))
+		xlog.Default().Panic("startup", xlog.Any("err", err))
 	}
 }

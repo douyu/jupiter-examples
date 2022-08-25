@@ -18,7 +18,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/douyu/jupiter/example/grpc/helloworld/helloworld"
+	"github.com/douyu/jupiter-examples/grpc/helloworld/helloworld"
 )
 
 type Greeter struct {

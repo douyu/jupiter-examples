@@ -37,14 +37,13 @@ func NewEngine() *Engine {
 	if err := eng.Startup(
 		eng.printConfig,
 	); err != nil {
-		xlog.Panic("startup", xlog.Any("err", err))
+		xlog.Default().Panic("startup", xlog.Any("err", err))
 	}
 	return eng
 }
 
 func (s *Engine) printConfig() error {
-	xlog.DefaultLogger = xlog.StdConfig("default").Build()
 	peopleName := conf.GetString("people.name")
-	xlog.Info("people info", xlog.String("name", peopleName), xlog.String("type", "onelineByFile"))
+	xlog.Default().Info("people info", xlog.String("name", peopleName), xlog.String("type", "onelineByFile"))
 	return nil
 }

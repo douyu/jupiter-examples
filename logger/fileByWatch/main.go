@@ -38,17 +38,16 @@ func NewEngine() *Engine {
 	if err := eng.Startup(
 		eng.printLogger,
 	); err != nil {
-		xlog.Panic("startup", xlog.Any("err", err))
+		xlog.Default().Panic("startup", xlog.Any("err", err))
 	}
 	return eng
 }
 
 func (s *Engine) printLogger() error {
-	xlog.DefaultLogger = xlog.StdConfig("default").Build()
 	go func() {
 		for {
-			xlog.Info("logger info", xlog.String("gopher", "jupiter1"), xlog.String("type", "file"))
-			xlog.Debug("logger debug", xlog.String("gopher", "jupiter2"), xlog.String("type", "file"))
+			xlog.Default().Info("logger info", xlog.String("gopher", "jupiter1"), xlog.String("type", "file"))
+			xlog.Default().Debug("logger debug", xlog.String("gopher", "jupiter2"), xlog.String("type", "file"))
 			time.Sleep(1 * time.Second)
 		}
 	}()

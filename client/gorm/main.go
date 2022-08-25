@@ -36,11 +36,11 @@ type User struct {
 func main() {
 	eng := &jupiter.Application{}
 	if err := eng.Startup(openDB); err != nil {
-		xlog.Panic("start up", xlog.FieldErr(err))
+		xlog.Default().Panic("start up", xlog.FieldErr(err))
 	}
 	eng.Schedule(startTest())
 	if err := eng.Run(); err != nil {
-		xlog.Panic("startup", xlog.Any("err", err))
+		xlog.Default().Panic("startup", xlog.Any("err", err))
 	}
 }
 
@@ -63,7 +63,7 @@ func openDB() error {
 func testDB() error {
 	var user User
 	err := gorm.WithContext(context.Background(), gormDB).Where("id = 1").Find(&user).Error
-	xlog.Info("user info", xlog.String("name", user.Name))
+	xlog.Default().Info("user info", xlog.String("name", user.Name))
 	return err
 }
 

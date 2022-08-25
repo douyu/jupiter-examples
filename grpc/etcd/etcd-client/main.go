@@ -27,13 +27,13 @@ import (
 	"github.com/douyu/jupiter/pkg/registry/etcdv3"
 	"github.com/douyu/jupiter/pkg/xlog"
 
-	"github.com/douyu/jupiter/example/grpc/helloworld/helloworld"
+	"github.com/douyu/jupiter-examples/grpc/helloworld/helloworld"
 )
 
 func main() {
 	eng := NewEngine()
 	if err := eng.Run(); err != nil {
-		xlog.Error(err.Error())
+		xlog.Default().Error(err.Error())
 	}
 }
 
@@ -47,7 +47,7 @@ func NewEngine() *Engine {
 		eng.initResolver,
 		eng.consumer,
 	); err != nil {
-		xlog.Panic("startup", xlog.Any("err", err))
+		xlog.Default().Panic("startup", xlog.Any("err", err))
 	}
 	return eng
 }
@@ -70,10 +70,10 @@ func (eng *Engine) consumer() error {
 			})
 			if err != nil {
 				fmt.Printf("err = %+v\n", err)
-				xlog.Error(err.Error())
+				xlog.Default().Error(err.Error())
 			} else {
 				fmt.Printf("resp.Message = %+v\n", resp.Message)
-				xlog.Info("receive response", xlog.String("resp", resp.Message))
+				xlog.Default().Info("receive response", xlog.String("resp", resp.Message))
 			}
 			time.Sleep(1 * time.Second)
 		}

@@ -16,12 +16,12 @@ package main
 
 import (
 	"github.com/douyu/jupiter"
-	_ "github.com/douyu/jupiter/example/http/gin-swagger/docs"
+	_ "github.com/douyu/jupiter-examples/http/gin-swagger/docs"
 	"github.com/douyu/jupiter/pkg/server/xgin"
 	"github.com/douyu/jupiter/pkg/xlog"
 	"github.com/gin-gonic/gin"
-	"github.com/swaggo/files"
-	"github.com/swaggo/gin-swagger"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 // @title Swagger Example API
@@ -42,7 +42,7 @@ import (
 func main() {
 	eng := NewEngine()
 	if err := eng.Run(); err != nil {
-		xlog.Panic(err.Error())
+		xlog.Default().Panic(err.Error())
 	}
 }
 
@@ -55,7 +55,7 @@ func NewEngine() *Engine {
 	if err := eng.Startup(
 		eng.serveHTTP,
 	); err != nil {
-		xlog.Panic("startup", xlog.Any("err", err))
+		xlog.Default().Panic("startup", xlog.Any("err", err))
 	}
 	return eng
 }

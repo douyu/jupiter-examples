@@ -18,7 +18,7 @@ import (
 	"context"
 
 	"github.com/douyu/jupiter"
-	"github.com/douyu/jupiter/example/grpc/helloworld/helloworld"
+	"github.com/douyu/jupiter-examples/grpc/helloworld/helloworld"
 	"github.com/douyu/jupiter/pkg/server/xgrpc"
 	"github.com/douyu/jupiter/pkg/xlog"
 )
@@ -27,7 +27,7 @@ func main() {
 	eng := NewEngine()
 	//eng.SetGovernor("0.0.0.0:0")
 	if err := eng.Run(); err != nil {
-		xlog.Error(err.Error())
+		xlog.Default().Error(err.Error())
 	}
 }
 
@@ -40,7 +40,7 @@ func NewEngine() *Engine {
 	if err := eng.Startup(
 		eng.serveGRPC,
 	); err != nil {
-		xlog.Panic("startup", xlog.Any("err", err))
+		xlog.Default().Panic("startup", xlog.Any("err", err))
 	}
 	return eng
 }

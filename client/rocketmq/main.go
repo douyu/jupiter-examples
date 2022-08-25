@@ -37,7 +37,7 @@ func NewEngine() *Engine {
 		eng.exampleRocketMQProducer,
 		eng.exampleRocketMQConsumer,
 	); err != nil {
-		xlog.Panic("startup", xlog.Any("err", err))
+		xlog.Default().Panic("startup", xlog.Any("err", err))
 	}
 	return eng
 }
