@@ -28,7 +28,7 @@ import (
 func main() {
 	eng := NewEngine()
 	if err := eng.Run(); err != nil {
-		xlog.Panic(err.Error())
+		xlog.Default().Panic(err.Error())
 	}
 }
 
@@ -41,7 +41,7 @@ func NewEngine() *Engine {
 	if err := eng.Startup(
 		eng.serveHTTP,
 	); err != nil {
-		xlog.Panic("startup", xlog.Any("err", err))
+		xlog.Default().Panic("startup", xlog.Any("err", err))
 	}
 	return eng
 }

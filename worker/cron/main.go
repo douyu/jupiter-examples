@@ -16,16 +16,17 @@ package main
 
 import (
 	"fmt"
+	"time"
+
 	"github.com/douyu/jupiter"
 	"github.com/douyu/jupiter/pkg/worker/xcron"
 	"github.com/douyu/jupiter/pkg/xlog"
-	"time"
 )
 
 func main() {
 	eng := NewEngine()
 	if err := eng.Run(); err != nil {
-		xlog.Error(err.Error())
+		xlog.Default().Error(err.Error())
 	}
 }
 
@@ -39,7 +40,7 @@ func NewEngine() *Engine {
 	if err := eng.Startup(
 		eng.startJobs,
 	); err != nil {
-		xlog.Panic("startup engine", xlog.Any("err", err))
+		xlog.Default().Panic("startup engine", xlog.Any("err", err))
 	}
 
 	return eng
@@ -52,8 +53,8 @@ func (eng *Engine) startJobs() error {
 }
 
 func (eng *Engine) execJob() error {
-	xlog.Info("info job")
-	xlog.Warn("warn job")
+	xlog.Default().Info("info job")
+	xlog.Default().Warn("warn job")
 	fmt.Println("run job")
 	return nil
 }

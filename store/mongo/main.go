@@ -40,7 +40,7 @@ func NewEngine() *Engine {
 		eng.exampleMongo,
 		eng.serveHTTP,
 	); err != nil {
-		xlog.Panic("startup", xlog.Any("err", err))
+		xlog.Default().Panic("startup", xlog.Any("err", err))
 	}
 	return eng
 }
@@ -98,7 +98,7 @@ func read(client *mongo.Client) {
 		var result bson.M
 		err := cur.Decode(&result)
 		if err != nil {
-			xlog.Fatal("exampleMongo", xlog.Any("err", err.Error()))
+			xlog.Default().Fatal("exampleMongo", xlog.Any("err", err.Error()))
 		}
 		fmt.Println("result...", result)
 

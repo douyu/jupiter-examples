@@ -41,18 +41,17 @@ func NewEngine() *Engine {
 	if err := eng.Startup(
 		eng.printConfig,
 	); err != nil {
-		xlog.Panic("startup", xlog.Any("err", err))
+		xlog.Default().Panic("startup", xlog.Any("err", err))
 	}
 	return eng
 }
 
 func (s *Engine) printConfig() error {
-	xlog.DefaultLogger = xlog.StdConfig("default").Build()
 	p := People{}
 	err := conf.UnmarshalKey("people", &p)
 	if err != nil {
 		panic(err.Error())
 	}
-	xlog.Info("people info", xlog.String("name", p.Name), xlog.String("type", "structByFile"))
+	xlog.Default().Info("people info", xlog.String("name", p.Name), xlog.String("type", "structByFile"))
 	return nil
 }

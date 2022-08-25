@@ -52,7 +52,7 @@ func NewEngine() *Engine {
 		eng.remoteConfigWatch,
 		eng.serveHTTP,
 	); err != nil {
-		xlog.Panic("startup", xlog.Any("err", err))
+		xlog.Default().Panic("startup", xlog.Any("err", err))
 	}
 
 	return eng
@@ -70,7 +70,7 @@ func (eng *Engine) remoteConfigWatch() error {
 		// 循环打印配置
 		for {
 			time.Sleep(10 * time.Second)
-			xlog.Info("people info", xlog.String("name", p.Name), xlog.String("type", "structByFileWatch"))
+			xlog.Default().Info("people info", xlog.String("name", p.Name), xlog.String("type", "structByFileWatch"))
 		}
 	}()
 	return nil

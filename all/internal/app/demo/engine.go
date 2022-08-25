@@ -48,7 +48,7 @@ func NewEngine() *Engine {
 			eng.serveGRPC,
 		),
 	); err != nil {
-		xlog.Panic("startup engine", xlog.Any("err", err))
+		xlog.Default().Panic("startup engine", xlog.Any("err", err))
 	}
 
 	return eng
@@ -111,7 +111,7 @@ func (eng *Engine) serveGRPC() error {
 }
 
 func (eng *Engine) execJob() error {
-	xlog.Info("exec job", xlog.String("info", "print info"))
-	xlog.Warn("exec job", xlog.String("warn", "print warning"))
+	xlog.Default().Info("exec job", xlog.String("info", "print info"))
+	xlog.Default().Warn("exec job", xlog.String("warn", "print warning"))
 	return nil
 }

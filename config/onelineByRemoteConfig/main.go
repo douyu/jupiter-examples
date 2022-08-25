@@ -46,7 +46,7 @@ func NewEngine() *Engine {
 		eng.remoteConfig,
 		eng.serveHTTP,
 	); err != nil {
-		xlog.Panic("startup", xlog.Any("err", err))
+		xlog.Default().Panic("startup", xlog.Any("err", err))
 	}
 
 	return eng
@@ -63,7 +63,7 @@ func (eng *Engine) remoteConfig() error {
 		for {
 			time.Sleep(10 * time.Second)
 			name := conf.GetString("people.name")
-			xlog.Info("people info", xlog.String("name", name), xlog.String("type", "structByFileWatch"))
+			xlog.Default().Info("people info", xlog.String("name", name), xlog.String("type", "structByFileWatch"))
 		}
 	}()
 	return nil

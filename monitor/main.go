@@ -29,7 +29,7 @@ import (
 func main() {
 	eng := NewEngine()
 	if err := eng.Run(); err != nil {
-		xlog.Error(err.Error())
+		xlog.Default().Error(err.Error())
 	}
 }
 
@@ -49,12 +49,12 @@ func NewEngine() *Engine {
 			// 添加数据
 			_, err := client.Put(ctx, fmt.Sprintf("/prometheus/job/%s/%s/%s", "jupiter", "monitor-demo", "127.0.0.1:9999"), "127.0.0.1:9999")
 			if err != nil {
-				xlog.Panic(err.Error())
+				xlog.Default().Panic(err.Error())
 			}
 			return nil
 		},
 	); err != nil {
-		xlog.Panic("startup", xlog.Any("err", err))
+		xlog.Default().Panic("startup", xlog.Any("err", err))
 	}
 	return eng
 }

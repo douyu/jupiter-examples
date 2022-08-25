@@ -22,7 +22,6 @@ import (
 	"github.com/douyu/jupiter"
 	"github.com/douyu/jupiter/pkg/sentinel"
 	"github.com/douyu/jupiter/pkg/util/xgo"
-	"github.com/douyu/jupiter/pkg/util/xtime"
 	"github.com/douyu/jupiter/pkg/xlog"
 )
 
@@ -36,7 +35,7 @@ func NewEngine() *Engine {
 	if err := eng.Startup(
 		eng.exampleSentinel,
 	); err != nil {
-		xlog.Panic("startup", xlog.Any("err", err))
+		xlog.Default().Panic("startup", xlog.Any("err", err))
 	}
 	return eng
 }
@@ -62,7 +61,7 @@ func (eng *Engine) exampleSentinel() (err error) {
 				time.Sleep(time.Duration(rand.Uint64()%10) * time.Millisecond)
 			} else {
 				// 请求允许通过，此处编写业务逻辑
-				fmt.Println(xtime.CurrentTimeMillis(), "Passed")
+				fmt.Println("Passed")
 				time.Sleep(time.Duration(rand.Uint64()%10) * time.Millisecond)
 
 				// 务必保证业务结束后调用 Exit

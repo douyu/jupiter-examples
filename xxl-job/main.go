@@ -49,7 +49,7 @@ func NewEngine() *Engine {
 			eng.startXxlJob,
 		),
 	); err != nil {
-		xlog.Panic("startup engine", xlog.Any("err", err))
+		xlog.Default().Panic("startup engine", xlog.Any("err", err))
 	}
 	return eng
 }
