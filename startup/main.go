@@ -28,11 +28,11 @@ import (
 
 func main() {
 	var app jupiter.Application
-	app.Startup()
-	app.Serve(startHTTPServer())
-	app.Serve(startGRPCServer())
-	app.Schedule(startWorker())
-	app.Run()
+	_ = app.Startup()
+	_ = app.Serve(startHTTPServer())
+	_ = app.Serve(startGRPCServer())
+	_ = app.Schedule(startWorker())
+	_ = app.Run()
 }
 
 func startHTTPServer() server.Server {

@@ -30,7 +30,10 @@ func main() {
 		log.Fatal(err)
 	}
 	app.SetRegistry(registry.Local{})
-	app.Run(startHTTPServer())
+
+	if err := app.Run(startHTTPServer()); err != nil {
+		panic(err)
+	}
 }
 
 func startHTTPServer() server.Server {

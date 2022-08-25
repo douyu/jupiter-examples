@@ -47,7 +47,7 @@ func NewEngine() *Engine {
 		fmt.Println("read remote content:", conf.GetString("remote"))
 		time.Sleep(time.Second)
 	}
-	return eng
+
 }
 
 // HTTP地址

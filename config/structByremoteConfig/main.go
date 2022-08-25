@@ -65,7 +65,9 @@ func (eng *Engine) serveHTTP() error {
 
 func (eng *Engine) remoteConfigWatch() error {
 	p := People{}
-	conf.UnmarshalKey("people", &p)
+	if err := conf.UnmarshalKey("people", &p); err != nil {
+		return err
+	}
 	go func() {
 		// 循环打印配置
 		for {

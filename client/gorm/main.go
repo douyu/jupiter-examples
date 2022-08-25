@@ -38,7 +38,9 @@ func main() {
 	if err := eng.Startup(openDB); err != nil {
 		xlog.Default().Panic("start up", xlog.FieldErr(err))
 	}
-	eng.Schedule(startTest())
+	if err := eng.Schedule(startTest()); err != nil {
+		panic(err)
+	}
 	if err := eng.Run(); err != nil {
 		xlog.Default().Panic("startup", xlog.Any("err", err))
 	}
