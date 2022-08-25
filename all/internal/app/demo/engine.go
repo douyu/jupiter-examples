@@ -19,8 +19,8 @@ import (
 
 	"github.com/alibaba/sentinel-golang/core/flow"
 	"github.com/douyu/jupiter"
-	"github.com/douyu/jupiter/example/all/internal/app/greeter"
-	"github.com/douyu/jupiter/example/grpc/helloworld/helloworld"
+	"github.com/douyu/jupiter-examples/all/internal/app/greeter"
+	"github.com/douyu/jupiter-examples/grpc/helloworld/helloworld"
 	"github.com/douyu/jupiter/pkg/sentinel"
 	"github.com/douyu/jupiter/pkg/server/xecho"
 	"github.com/douyu/jupiter/pkg/server/xgrpc"

@@ -17,7 +17,7 @@ package main
 import (
 	"log"
 
-	"github.com/douyu/jupiter/example/all/internal/app/demo"
+	"github.com/douyu/jupiter-examples/all/internal/app/demo"
 )
 
 func main() {

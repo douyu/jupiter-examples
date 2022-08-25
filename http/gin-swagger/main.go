@@ -16,7 +16,7 @@ package main
 
 import (
 	"github.com/douyu/jupiter"
-	_ "github.com/douyu/jupiter/example/http/gin-swagger/docs"
+	_ "github.com/douyu/jupiter-examples/http/gin-swagger/docs"
 	"github.com/douyu/jupiter/pkg/server/xgin"
 	"github.com/douyu/jupiter/pkg/xlog"
 	"github.com/gin-gonic/gin"

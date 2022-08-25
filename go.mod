@@ -1,4 +1,4 @@
-module github.com/douyu/jupiter/example
+module github.com/douyu/jupiter-examples
 
 go 1.16
 
