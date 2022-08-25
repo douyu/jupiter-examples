@@ -58,19 +58,18 @@ jobs:
           key: ${{ runner.os }}-go-${{ matrix.go-version }}-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-${{ matrix.go-version }}-
+
       - name: Get dependencies
         run: |
           go env
           go get -v -t -d ./...
+
       - uses: actions/checkout@v3.0.2
-      - uses: actions/setup-java@v3
-        with:
-          distribution: "temurin" # See 'Supported distributions' for available options
-          java-version: "8"
 
       - name: Test
         run: |
           go test ./... -race -coverprofile=coverage.txt -covermode=atomic
+
       - name: Codecov
         uses: codecov/codecov-action@v3
         with:
