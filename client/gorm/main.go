@@ -49,11 +49,11 @@ func main() {
 var gormDB *gorm.DB
 
 func openDB() error {
-	gormDB = gorm.StdConfig("test").Build()
+	gormDB = gorm.StdConfig("test").MustBuild()
 	models := []interface{}{
 		&User{},
 	}
-	gormDB.SingularTable(true)
+
 	gormDB.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models...)
 	gormDB.Create(&User{
 		Name: "jupiter",
@@ -64,7 +64,7 @@ func openDB() error {
 
 func testDB() error {
 	var user User
-	err := gorm.WithContext(context.Background(), gormDB).Where("id = 1").Find(&user).Error
+	err := gormDB.WithContext(context.TODO()).Where("id = 1").Find(&user).Error
 	xlog.Default().Info("user info", xlog.String("name", user.Name))
 	return err
 }
