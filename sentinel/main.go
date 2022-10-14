@@ -21,7 +21,6 @@ import (
 
 	"github.com/douyu/jupiter"
 	"github.com/douyu/jupiter/pkg/sentinel"
-	"github.com/douyu/jupiter/pkg/util/xgo"
 	"github.com/douyu/jupiter/pkg/xlog"
 )
 
@@ -48,26 +47,26 @@ func main() {
 }
 
 func (eng *Engine) exampleSentinel() (err error) {
-	err = sentinel.StdConfig("test").Build()
+	err = sentinel.StdConfig().Build()
 	if err != nil {
 		panic(fmt.Sprintf("sentinel init failed: %s", err.Error()))
 	}
 
 	for k := 0; k < 20; k++ {
-		xgo.Go(func() {
-			e, b := sentinel.Entry("some-test")
-			if b != nil {
-				// 请求被拒绝，在此处进行处理
-				time.Sleep(time.Duration(rand.Uint64()%10) * time.Millisecond)
-			} else {
-				// 请求允许通过，此处编写业务逻辑
-				fmt.Println("Passed")
-				time.Sleep(time.Duration(rand.Uint64()%10) * time.Millisecond)
 
-				// 务必保证业务结束后调用 Exit
-				e.Exit()
-			}
-		})
+		e, b := sentinel.Entry("some-test")
+		if b != nil {
+			// 请求被拒绝，在此处进行处理
+			fmt.Println("Rejected", b.Error())
+			time.Sleep(time.Duration(rand.Uint64()%10) * time.Millisecond)
+		} else {
+			// 请求允许通过，此处编写业务逻辑
+			fmt.Println("Passed")
+			time.Sleep(time.Duration(rand.Uint64()%10) * time.Millisecond)
+
+			// 务必保证业务结束后调用 Exit
+			e.Exit()
+		}
 	}
 
 	return
