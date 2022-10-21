@@ -10,7 +10,7 @@ import (
 	"github.com/douyu/jupiter-examples/uuid/internal/app/uuidserver/controller"
 	"github.com/douyu/jupiter-examples/uuid/internal/app/uuidserver/service"
 	"github.com/douyu/jupiter-examples/uuid/internal/pkg/redis"
-	"github.com/douyu/jupiter/pkg/application"
+	"github.com/douyu/jupiter/pkg/core/application"
 )
 
 // Injectors from wire.go:

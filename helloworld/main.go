@@ -16,7 +16,7 @@ package main
 
 import (
 	"github.com/douyu/jupiter"
-	"github.com/douyu/jupiter/pkg/governor"
+	"github.com/douyu/jupiter/pkg/server/governor"
 	"github.com/douyu/jupiter/pkg/server/xecho"
 	"github.com/douyu/jupiter/pkg/xlog"
 	"github.com/labstack/echo/v4"

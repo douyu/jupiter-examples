@@ -21,7 +21,7 @@ import (
 	"github.com/douyu/jupiter"
 	"github.com/douyu/jupiter-examples/all/internal/app/greeter"
 	"github.com/douyu/jupiter-examples/grpc/helloworld/helloworld"
-	"github.com/douyu/jupiter/pkg/sentinel"
+	"github.com/douyu/jupiter/pkg/core/sentinel"
 	"github.com/douyu/jupiter/pkg/server/xecho"
 	"github.com/douyu/jupiter/pkg/server/xgrpc"
 	"github.com/douyu/jupiter/pkg/util/xgo"

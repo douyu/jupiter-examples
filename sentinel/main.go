@@ -20,7 +20,7 @@ import (
 	"time"
 
 	"github.com/douyu/jupiter"
-	"github.com/douyu/jupiter/pkg/sentinel"
+	"github.com/douyu/jupiter/pkg/core/sentinel"
 	"github.com/douyu/jupiter/pkg/xlog"
 )
 

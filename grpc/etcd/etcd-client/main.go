@@ -23,8 +23,6 @@ import (
 	"github.com/douyu/jupiter/pkg/client/grpc"
 	"github.com/douyu/jupiter/pkg/client/grpc/balancer"
 	"github.com/douyu/jupiter/pkg/client/grpc/balancer/p2c"
-	"github.com/douyu/jupiter/pkg/client/grpc/resolver"
-	"github.com/douyu/jupiter/pkg/registry/etcdv3"
 	"github.com/douyu/jupiter/pkg/xlog"
 
 	"github.com/douyu/jupiter-examples/grpc/helloworld/helloworld"
@@ -44,17 +42,11 @@ type Engine struct {
 func NewEngine() *Engine {
 	eng := &Engine{}
 	if err := eng.Startup(
-		eng.initResolver,
 		eng.consumer,
 	); err != nil {
 		xlog.Default().Panic("startup", xlog.Any("err", err))
 	}
 	return eng
-}
-
-func (eng *Engine) initResolver() error {
-	resolver.Register("etcd", etcdv3.StdConfig("wh").MustBuild())
-	return nil
 }
 
 func (eng *Engine) consumer() error {

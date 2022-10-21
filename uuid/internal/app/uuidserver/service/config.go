@@ -6,10 +6,11 @@ import (
 
 	"github.com/bwmarrin/snowflake"
 	"github.com/douyu/jupiter/pkg/conf"
-	"github.com/douyu/jupiter/pkg/ecode"
+	"github.com/douyu/jupiter/pkg/core/ecode"
 	"github.com/douyu/jupiter/pkg/flag"
 	"github.com/douyu/jupiter/pkg/xlog"
 	"github.com/pkg/errors"
+	"go.uber.org/zap"
 )
 
 // ModName named a mod
@@ -21,7 +22,7 @@ func init() {
 		Usage:   "--nodeId, set uuid service nodeId",
 		Default: 1,
 		Action: func(name string, fs *flag.FlagSet) {
-			xlog.Debugf("nodeId flag: %v", fs.Int(name))
+			xlog.Debug("nodeId flag", zap.Int64("nodeId", fs.Int(name)))
 		},
 	})
 }
@@ -75,7 +76,7 @@ func RawConfig(key string) *Config {
 func (config *Config) MustBuild() *Uuid {
 	server, err := config.Build()
 	if err != nil {
-		xlog.Panicf("build uuid server failed: %v", err)
+		xlog.Panic("build uuid server failed", zap.Error(err))
 	}
 	return server
 }
