@@ -15,6 +15,7 @@
 package main
 
 import (
+	"context"
 	"time"
 
 	"github.com/douyu/jupiter"
@@ -48,44 +49,44 @@ func main() {
 
 func (eng *Engine) exampleForRedisStub() (err error) {
 	//build redisStub
-	redisStub := redis.StdRedisStubConfig("myredis").Build()
+	redisStub := redis.StdConfig("myredis").MustSingleton()
 	// set string
-	setRes := redisStub.Set("jupiter-redis", "redisStub", time.Second*5)
+	setRes := redisStub.CmdOnMaster().Set(context.Background(), "jupiter-redis", "redisStub", time.Second*5)
 	xlog.Default().Info("redisStub set string", xlog.Any("res", setRes))
 	// get string
-	getRes := redisStub.Get("jupiter-redis")
+	getRes := redisStub.CmdOnMaster().Get(context.Background(), "jupiter-redis")
 	xlog.Default().Info("redisStub get string", xlog.Any("res", getRes))
 	return
 }
 func (eng *Engine) exampleForRedisClusterStub() (err error) {
 	//build redisClusterStub
-	redisStub := redis.StdRedisClusterConfig("myredis").Build()
+	redisStub := redis.StdConfig("myredis").MustSingleton()
 	// set string
-	setRes := redisStub.Set("jupiter-redisCluster", "redisClusterStub", time.Second*5)
+	setRes := redisStub.CmdOnMaster().Set(context.Background(), "jupiter-redisCluster", "redisClusterStub", time.Second*5)
 	xlog.Default().Info("redisClusterStub set string", xlog.Any("res", setRes))
 	// get string
-	getRes := redisStub.Get("jupiter-redisCluster")
+	getRes := redisStub.CmdOnMaster().Get(context.Background(), "jupiter-redisCluster")
 	xlog.Default().Info("redisClusterStub get string", xlog.Any("res", getRes))
 	return
 }
 
 func (eng *Engine) exampleForRedis() (err error) {
 	//build redisStub
-	redisClient := redis.StdRedisConfig("myredistub").Build()
+	redisClient := redis.StdConfig("myredistub").MustSingleton()
 	// set string
-	setRes := redisClient.Set("jupiter-redis", "redisStub", time.Second*5)
+	setRes := redisClient.CmdOnMaster().Set(context.Background(), "jupiter-redis", "redisStub", time.Second*5)
 	xlog.Default().Info("redisStub set string", xlog.Any("res", setRes))
 	// get string
-	getRes := redisClient.Get("jupiter-redis")
+	getRes := redisClient.CmdOnMaster().Get(context.Background(), "jupiter-redis")
 	xlog.Default().Info("redisStub get string", xlog.Any("res", getRes))
 
 	//build redisClusterStub
-	redisClient = redis.StdRedisConfig("myrediscluster").Build()
+	redisClient = redis.StdConfig("myrediscluster").MustSingleton()
 	// set string
-	setRes = redisClient.Set("jupiter-redisCluster", "redisClusterStub", time.Second*5)
+	setRes = redisClient.CmdOnMaster().Set(context.Background(), "jupiter-redisCluster", "redisClusterStub", time.Second*5)
 	xlog.Default().Info("redisClusterStub set string", xlog.Any("res", setRes))
 	// get string
-	getRes = redisClient.Get("jupiter-redisCluster")
+	getRes = redisClient.CmdOnMaster().Get(context.Background(), "jupiter-redisCluster")
 	xlog.Default().Info("redisClusterStub get string", xlog.Any("res", getRes))
 	return
 }
