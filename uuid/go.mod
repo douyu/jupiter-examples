@@ -5,16 +5,16 @@ go 1.18
 require (
 	github.com/BurntSushi/toml v1.2.1
 	github.com/bwmarrin/snowflake v0.3.0
-	github.com/douyu/jupiter v0.9.8
+	github.com/douyu/jupiter v0.9.9
 	github.com/google/uuid v1.3.0
 	github.com/google/wire v0.5.0
 	github.com/labstack/echo/v4 v4.9.1
-	github.com/onsi/ginkgo/v2 v2.5.0
+	github.com/onsi/ginkgo/v2 v2.5.1
 	github.com/onsi/gomega v1.24.1
 	github.com/pkg/errors v0.9.1
 	github.com/stretchr/testify v1.8.1
 	go.uber.org/zap v1.23.0
-	google.golang.org/grpc v1.50.1
+	google.golang.org/grpc v1.51.0
 	google.golang.org/protobuf v1.28.1
 )
 
@@ -64,9 +64,9 @@ require (
 	github.com/tklauser/numcpus v0.2.3 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.1 // indirect
-	go.etcd.io/etcd/api/v3 v3.5.5 // indirect
-	go.etcd.io/etcd/client/pkg/v3 v3.5.5 // indirect
-	go.etcd.io/etcd/client/v3 v3.5.5 // indirect
+	go.etcd.io/etcd/api/v3 v3.5.6 // indirect
+	go.etcd.io/etcd/client/pkg/v3 v3.5.6 // indirect
+	go.etcd.io/etcd/client/v3 v3.5.6 // indirect
 	go.opentelemetry.io/otel v1.11.1 // indirect
 	go.opentelemetry.io/otel/exporters/jaeger v1.11.1 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/internal/retry v1.11.1 // indirect
