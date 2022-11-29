@@ -6,7 +6,7 @@ require (
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
 	github.com/alibaba/sentinel-golang v1.0.4
 	github.com/apache/rocketmq-client-go/v2 v2.1.1
-	github.com/douyu/jupiter v0.9.8
+	github.com/douyu/jupiter v0.9.10
 	github.com/gin-gonic/gin v1.8.1
 	github.com/gogf/gf v1.16.9
 	github.com/golang/protobuf v1.5.2
@@ -16,7 +16,7 @@ require (
 	github.com/swaggo/files v0.0.0-20220728132757-551d4a08d97a
 	github.com/swaggo/gin-swagger v1.5.3
 	github.com/swaggo/swag v1.8.1
-	go.etcd.io/etcd/client/v3 v3.5.5
+	go.etcd.io/etcd/client/v3 v3.5.6
 	go.mongodb.org/mongo-driver v1.11.0
 	google.golang.org/grpc v1.51.0
 	google.golang.org/protobuf v1.28.1
