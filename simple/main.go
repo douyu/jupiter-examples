@@ -37,7 +37,7 @@ func main() {
 }
 
 func startHTTPServer() server.Server {
-	server := xgin.DefaultConfig().Build()
+	server := xgin.DefaultConfig().MustBuild()
 	server.GET("/hello", func(ctx *gin.Context) {
 		ctx.JSON(200, "hello jupiter")
 	})

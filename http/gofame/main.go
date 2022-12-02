@@ -45,7 +45,7 @@ func NewEngine() *Engine {
 
 // HTTP地址
 func (eng *Engine) serveHTTP() error {
-	server := xgoframe.StdConfig("http").Build()
+	server := xgoframe.StdConfig("http").MustBuild()
 	server.BindHandler("/hello", func(r *ghttp.Request) {
 		_ = r.Response.WriteJson("Hello GoFrame")
 	})

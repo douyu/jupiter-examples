@@ -62,7 +62,7 @@ func NewEngine() *Engine {
 
 // HTTP地址
 func (eng *Engine) serveHTTP() error {
-	server := xgin.StdConfig("http").Build()
+	server := xgin.StdConfig("http").MustBuild()
 
 	url := ginSwagger.URL("http://localhost:8080/swagger/doc.json") // The url pointing to API definition
 	server.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
