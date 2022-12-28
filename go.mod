@@ -11,7 +11,7 @@ require (
 	github.com/gogf/gf v1.16.9
 	github.com/golang/protobuf v1.5.2
 	github.com/gorilla/websocket v1.5.0
-	github.com/labstack/echo/v4 v4.9.1
+	github.com/labstack/echo/v4 v4.10.0
 	github.com/sentinel-group/sentinel-go-adapters v1.0.1
 	github.com/swaggo/files v0.0.0-20220728132757-551d4a08d97a
 	github.com/swaggo/gin-swagger v1.5.3
