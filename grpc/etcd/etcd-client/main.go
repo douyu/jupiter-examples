@@ -54,7 +54,7 @@ func (eng *Engine) consumer() error {
 	config.BalancerName = balancer.NameSmoothWeightRoundRobin
 	config.BalancerName = p2c.Name
 
-	client := helloworld.NewGreeterClient(config.Build())
+	client := helloworld.NewGreeterClient(config.MustBuild())
 	go func() {
 		for {
 			resp, err := client.SayHello(context.Background(), &helloworld.HelloRequest{

@@ -49,7 +49,7 @@ func NewEngine() *Engine {
 func (eng *Engine) consumer() error {
 	xgrpclog.SetLogger(xlog.Default())
 
-	conn := grpc.StdConfig("directserver").Build()
+	conn := grpc.StdConfig("directserver").MustBuild()
 	client := helloworld.NewGreeterClient(conn)
 
 	go func() {
