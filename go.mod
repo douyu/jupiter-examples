@@ -9,7 +9,7 @@ require (
 	github.com/douyu/jupiter v0.11.3
 	github.com/gin-gonic/gin v1.9.0
 	github.com/gogf/gf v1.16.9
-	github.com/golang/protobuf v1.5.2
+	github.com/golang/protobuf v1.5.3
 	github.com/gorilla/websocket v1.5.0
 	github.com/labstack/echo/v4 v4.10.2
 	github.com/sentinel-group/sentinel-go-adapters v1.0.1
