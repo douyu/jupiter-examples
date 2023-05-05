@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/BurntSushi/toml v1.2.1
 	github.com/bwmarrin/snowflake v0.3.0
-	github.com/douyu/jupiter v0.11.5
+	github.com/douyu/jupiter v0.11.6
 	github.com/google/uuid v1.3.0
 	github.com/google/wire v0.5.0
 	github.com/labstack/echo/v4 v4.10.2
