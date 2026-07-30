@@ -28,9 +28,6 @@ import (
 	"github.com/douyu/jupiter/pkg/worker/xcron"
 	"github.com/douyu/jupiter/pkg/xlog"
 	"github.com/labstack/echo/v4"
-	sentinel_echo "github.com/sentinel-group/sentinel-go-adapters/echo"
-
-	sentinel_grpc "github.com/sentinel-group/sentinel-go-adapters/grpc"
 )
 
 type Engine struct {
@@ -70,23 +67,7 @@ func (eng *Engine) startJobs() error {
 
 func (eng *Engine) serveHTTP() error {
 	server := xecho.StdConfig("http").MustBuild()
-	server.Use(
-		sentinel_echo.SentinelMiddleware(
-			// customize resource extractor if required
-			// method_path by default
-			sentinel_echo.WithResourceExtractor(func(ctx echo.Context) string {
-				return ctx.Request().Method + ":" + ctx.Path()
-			}),
-			// customize block fallback if required
-			// abort with status 429 by default
-			sentinel_echo.WithBlockFallback(func(ctx echo.Context) error {
-				return ctx.JSON(400, map[string]interface{}{
-					"err":  "too many requests; the quota used up",
-					"code": 10222,
-				})
-			}),
-		),
-	)
+
 	server.GET("/ping", func(ctx echo.Context) error {
 		return ctx.JSON(200, "pong")
 	})
@@ -101,10 +82,7 @@ func (eng *Engine) serveHTTP() error {
 }
 
 func (eng *Engine) serveGRPC() error {
-	server := xgrpc.StdConfig("grpc").
-		WithUnaryInterceptor(sentinel_grpc.NewUnaryServerInterceptor()).
-		WithStreamInterceptor(sentinel_grpc.NewStreamServerInterceptor()).
-		MustBuild()
+	server := xgrpc.StdConfig("grpc").MustBuild()
 
 	helloworld.RegisterGreeterServer(server.Server, new(greeter.Greeter))
 	return eng.Serve(server)

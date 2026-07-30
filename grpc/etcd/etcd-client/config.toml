@@ -1,5 +1,5 @@
 [jupiter.grpc.etcdserver]
-    address = "etcd:///main"
+    addr = "etcd:///grpc:main:v1:unknown-mode"
     balancerName = "round_robin" # 默认值
     block = false                # 默认值
     dialTimeout = "0s"           # 默认值
