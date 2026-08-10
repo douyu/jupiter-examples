@@ -3,7 +3,7 @@ module github.com/douyu/jupiter-examples/uuid
 go 1.18
 
 require (
-	github.com/BurntSushi/toml v1.2.1
+	github.com/BurntSushi/toml v1.3.2
 	github.com/bwmarrin/snowflake v0.3.0
 	github.com/douyu/jupiter v0.11.8
 	github.com/google/uuid v1.3.0
